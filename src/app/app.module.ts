@@ -10,6 +10,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { MovieDetailsComponent } from './pages/movies/movie-details/movie-details.component';
 import { WatchListComponent } from './pages/profile/watch-list/watch-list.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,13 +24,33 @@ import { WatchListComponent } from './pages/profile/watch-list/watch-list.compon
     ProfileComponent,
     MoviesComponent,
     MovieDetailsComponent,
-    WatchListComponent
+    WatchListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.GOOGLE_ID
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

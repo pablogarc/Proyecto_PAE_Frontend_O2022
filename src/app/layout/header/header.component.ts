@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(socialAuthService: SocialAuthService) { 
+    socialAuthService.authState.subscribe(user => {
+      if(user) {
+        console.log("Usuario logueado", user);
+      } else {
+        console.log("Se cerro la sesion");
+      }
+    })
+  }
 
   ngOnInit(): void {
   }
