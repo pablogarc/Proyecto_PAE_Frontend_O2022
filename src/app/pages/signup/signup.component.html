@@ -1,0 +1,87 @@
+<div class="center-content">
+  <div class="alert" role="alert" *ngIf="errorFlag">
+    <p class="error">
+      <mat-icon class="errorIcon">warning_amber</mat-icon>
+      {{ errorMsg }}
+    </p>
+  </div>
+  <mat-card class="card">
+    <mat-card-title>Create account</mat-card-title>
+    <mat-card-content>
+      <form class="form" (submit)="signup()">
+        <div>
+          <mat-form-field class="full-width">
+            <mat-label>Your Name</mat-label>
+            <input
+              type="text"
+              matInput
+              name="name"
+              placeholder="First and last name"
+              [(ngModel)]="name"
+              minlength="3"
+              maxlength="20"
+              required
+            />
+            <mat-icon matSuffix>account_box</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              name="email"
+              placeholder="Email"
+              [(ngModel)]="email"
+              email
+              required
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              matInput
+              name="password"
+              placeholder="at least 6 characters"
+              [(ngModel)]="password"
+              minlength="6"
+              required
+            />
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width">
+            <mat-label>Re-enter password</mat-label>
+            <input
+              type="password"
+              matInput
+              name="confirmPassword"
+              [(ngModel)]="confirmPassword"
+              minlength="6"
+              required
+            />
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+        </div>
+        <button
+          class="signup-button"
+          mat-raised-button
+          color="primary"
+          [disabled]="!email || !password || !confirmPassword || !name"
+        >
+          Sign up
+        </button>
+      </form>
+      <div class="login-button">
+        Already have an account?
+        <a mat-raised-button routerLink="/login">Log in for MovIteso</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

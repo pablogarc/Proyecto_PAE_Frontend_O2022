@@ -1,1 +1,28 @@
-<p>movies works!</p>
+<div fxFlex fxLayout="column" fxLayoutGap="10px" style="height: 100vh">
+  <div fxLayout="row wrap">
+    <div
+      *ngFor="let movie of movies"
+      fxFlex="25"
+      fxFlex.md="33"
+      fxFlex.sm="50"
+      fxFlex.xs="100"
+      fxLayout="column"
+      style="padding: 5px"
+    >
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ movie.title }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="" [alt]="" />
+        <mat-card-content>
+          <p>{{ movie.adult }}</p>
+          <p>{{ movie.original_language }}</p>
+          <p>{{ movie.vote_average }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button fxFlex mat-button>LIKE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
