@@ -1,0 +1,51 @@
+.card {
+  max-width: 400px;
+}
+
+.center-content {
+  text-align: -webkit-center;
+  margin-top: 15px;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.login-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signup-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: large;
+  height: 45px;
+  width: 100%;
+}
+
+.alert {
+  text-align: -webkit-center;
+  padding: 5px;
+  max-width: 400px;
+  border: 2px solid red;
+  border-radius: 5px;
+  margin: 20px;
+
+  .error {
+    color: red;
+    font-size: large;
+
+    .errorIcon {
+      text-align: left;
+      font-size: 25px;
+    }
+  }
+}

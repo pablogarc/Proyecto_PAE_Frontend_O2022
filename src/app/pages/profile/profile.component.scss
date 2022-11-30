@@ -1,0 +1,74 @@
+.center-content {
+  text-align: -webkit-center;
+  margin-top: 15px;
+
+  .alert {
+    text-align: -webkit-center;
+    padding: 5px;
+    max-width: 400px;
+    border: 2px solid red;
+    border-radius: 5px;
+    margin: 20px;
+  
+    .error {
+      color: red;
+      font-size: large;
+  
+      .errorIcon {
+        text-align: left;
+        font-size: 25px;
+      }
+    }
+  }
+
+  .card {
+    max-width: 700px;
+
+    .image-user {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 50%;
+    }
+
+    .full-width {
+      width: 100%;
+      margin: 20px;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    .edit-mode {
+        margin-top: 15px;
+
+        .newValue{
+          margin-bottom: 15px;
+          width: 45%;
+        }
+
+        .file {
+            margin-bottom: 15px;
+        }
+
+        .accept {
+            margin-right: 5px;
+        }
+
+        .cancel {
+            margin-left: 5px;
+        }
+    }
+
+    .google-account {
+      max-width: 50%;
+      margin-top: 15px;
+      border: 2px solid black;
+      border-radius: 5px;
+      background-color: #573391;
+      color: white;
+    }
+
+    .delete {
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+<div class="center-content">
+  <div class="alert" role="alert" *ngIf="errorFlag">
+    <p class="error">
+      <mat-icon class="errorIcon">warning_amber</mat-icon>
+      {{ errorMsg }}
+    </p>
+  </div>
+  <mat-card class="card">
+    <mat-card-title>Log in</mat-card-title>
+    <mat-card-content>
+      <form class="form" (submit)="login()">
+        <div>
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              name="email"
+              placeholder="Email"
+              [(ngModel)]="email"
+              email
+              required
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              matInput
+              name="password"
+              placeholder="Password"
+              [(ngModel)]="password"
+              minlength="6"
+              required
+            />
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+        </div>
+        <button
+          class="login-button"
+          mat-raised-button
+          color="primary"
+          [disabled]="!email || !password"
+        >
+          Log in
+        </button>
+      </form>
+      <p class="divider-text">or with Google account:</p>
+      <asl-google-signin-button
+        type="standard"
+        size="large"
+      ></asl-google-signin-button>
+      <div class="signup-button">
+        Don't have an account?
+        <a mat-raised-button routerLink="/signup">Sign up for MovIteso</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,247 @@
+
+<div class="center-content">
+  <div class="alert" role="alert" *ngIf="errorFlag">
+    <p class="error">
+      <mat-icon class="errorIcon">warning_amber</mat-icon>
+      {{ errorMsg }}
+    </p>
+  </div>
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>User profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="4" rowHeight="7:2">
+        <mat-grid-tile [rowspan]="googleAccount ? 5 : 7">
+          <img class="image-user" mat-card-image [src]="user.image" />
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="2">
+          <mat-form-field class="full-width">
+            <mat-label>Name: </mat-label>
+            <input
+              type="text"
+              name="name"
+              matInput
+              disabled
+              [value]="user.full_name"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="2" *ngIf="!googleAccount">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changeNameStatus()"
+            [disabled]="
+              !descriptionFlag ||
+              !imageFlag ||
+              !passwordFlag ||
+              !emailFlag ||
+              !nameFlag
+            "
+          >
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="2">
+          <mat-form-field class="full-width">
+            <mat-label>Email: </mat-label>
+            <input
+              type="email"
+              name="email"
+              matInput
+              disabled
+              [value]="user.email"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="2" *ngIf="!googleAccount">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changeEmailStatus()"
+            [disabled]="
+              !descriptionFlag ||
+              !imageFlag ||
+              !passwordFlag ||
+              !emailFlag ||
+              !nameFlag
+            "
+          >
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="2" *ngIf="!googleAccount">
+          <mat-form-field class="full-width">
+            <mat-label>Password: </mat-label>
+            <input
+              type="password"
+              name="password"
+              matInput
+              disabled
+              [value]="user.password"
+            />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="2" *ngIf="!googleAccount">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changePasswordStatus()"
+            [disabled]="
+              !descriptionFlag ||
+              !imageFlag ||
+              !passwordFlag ||
+              !emailFlag ||
+              !nameFlag
+            "
+          >
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="2">
+          <mat-form-field class="full-width">
+            <mat-label>Description: </mat-label>
+            <textarea
+              type="text"
+              name="description"
+              matInput
+              disabled
+              [value]="user.description"
+            ></textarea>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="2">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changeDescriptionStatus()"
+            [disabled]="
+              !descriptionFlag ||
+              !imageFlag ||
+              !passwordFlag ||
+              !emailFlag ||
+              !nameFlag
+            "
+          >
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changeImageStatus()"
+            [disabled]="
+              !imageFlag ||
+              !descriptionFlag ||
+              !passwordFlag ||
+              !emailFlag ||
+              !nameFlag
+            "
+          >
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div
+        class="edit-mode"
+        *ngIf="
+          !descriptionFlag ||
+          !imageFlag ||
+          !passwordFlag ||
+          !emailFlag ||
+          !nameFlag
+        "
+      >
+        <form *ngIf="!imageFlag" class="file">
+          <div>
+            <input
+              accept="image/*"
+              type="file"
+              name="file"
+              (change)="selectImage($event)"
+            />
+            <button mat-raised-button color="primary" (click)="acceptChanges()">
+              Save
+            </button>
+          </div>
+        </form>
+        <mat-form-field *ngIf="!nameFlag" class="newValue">
+          <mat-label>New name: </mat-label>
+          <input
+            type="text"
+            name="newNameValue"
+            matInput
+            [(ngModel)]="newName"
+          />
+        </mat-form-field>
+        <mat-form-field
+          *ngIf="!emailFlag"
+          class="newValue"
+        >
+          <mat-label>New email: </mat-label>
+          <input
+            type="email"
+            name="newEmailValue"
+            matInput
+            [(ngModel)]="newEmail"
+          />
+        </mat-form-field>
+        <mat-form-field
+          *ngIf="!passwordFlag"
+          class="newValue"
+        >
+          <mat-label>New password: </mat-label>
+          <input
+            type="password"
+            name="newPasswordValue"
+            matInput
+            [(ngModel)]="newPassword"
+          />
+        </mat-form-field>
+        <mat-form-field *ngIf="!descriptionFlag" class="newValue">
+          <mat-label>New description: </mat-label>
+          <textarea
+            type="text"
+            name="newDescriptionValue"
+            matInput
+            [(ngModel)]="newDescription"
+          ></textarea>
+        </mat-form-field>
+        <br />
+        <button
+          mat-raised-button
+          class="accept"
+          color="primary"
+          (click)="acceptChanges()"
+          *ngIf="
+            imageFlag &&
+            (!descriptionFlag || !passwordFlag || !emailFlag || !nameFlag)
+          "
+        >
+          Save
+        </button>
+        <button
+          mat-raised-button
+          class="cancel"
+          color="primary"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+      </div>
+      <p class="google-account" *ngIf="googleAccount">
+        Account linked with: Google
+      </p>
+      <button
+          mat-raised-button
+          class="delete"
+          color="warn"
+          (click)="delete()"
+        >
+          Delete Account
+        </button>
+    </mat-card-content>
+  </mat-card>
+</div>
