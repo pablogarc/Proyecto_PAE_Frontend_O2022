@@ -17,13 +17,17 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [UnauthGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [UnauthGuard] },
   { path: 'movies', component: MoviesComponent },
-  { path: 'movies/:id', component: MovieDetailsComponent },
+  { path: 'movies/:title', component: MovieDetailsComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'watchlist', component: WatchListComponent, canActivate: [AuthGuard] },
+  {
+    path: 'watchlist',
+    component: WatchListComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

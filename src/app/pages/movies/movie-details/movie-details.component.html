@@ -1,1 +1,120 @@
-<p>movie-details works!</p>
+<mat-card class="content">
+  <mat-card-header>
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image class="img" [src]="url + movie.poster_path" />
+  <mat-card-content>
+    <p>Rate: {{ movie.vote_average }}</p>
+    <p>Language: {{ movie.original_language }}</p>
+    <p>Release Date: {{ movie.release_date }}</p>
+    <p>{{ movie.overview }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addItemToWatchlist(movie.id)"
+      [disabled]="!userLogged || isOnWatchlist"
+    >
+      Add to watchlist
+    </button>
+    <button mat-raised-button color="warn" routerLink="..">Back to home</button>
+  </mat-card-actions>
+  <h2>Reviews</h2>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="changeReviewFlag()"
+    *ngIf="userLogged"
+    [disabled]="reviewFlag || updateReviewFlag"
+  >
+    New Review
+  </button>
+  <hr />
+  <mat-form-field class="full-width" *ngIf="reviewFlag">
+    <mat-label>Content: </mat-label>
+    <textarea
+      type="text"
+      name="content"
+      matInput
+      [(ngModel)]="newReview"
+    ></textarea>
+  </mat-form-field>
+  <button
+    class="accept"
+    mat-raised-button
+    color="primary"
+    (click)="createNewReview()"
+    *ngIf="reviewFlag"
+  >
+    Accept
+  </button>
+  <button
+    class="accept"
+    mat-raised-button
+    color="primary"
+    (click)="reloadPage()"
+    *ngIf="reviewFlag"
+  >
+    Cancel
+  </button>
+  <hr />
+  <div *ngFor="let review of allReviews">
+    <div>
+      <p>{{ review.user_id }}</p>
+      <p>{{ review.content }}</p>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="userLogged && review.user_id === userId"
+        [disabled]="updateReviewFlag || reviewFlag"
+        (click)="changeUpdateReviewFlag(review._id)"
+      >
+        Update Review
+      </button>
+    </div>
+    <mat-form-field
+      class="full-width"
+      *ngIf="
+        updateReviewFlag &&
+        review.user_id === userId &&
+        review._id === reviewIdUpdate
+      "
+    >
+      <mat-label>New Content: </mat-label>
+      <textarea
+        type="text"
+        name="new content"
+        matInput
+        [(ngModel)]="updateReviewContent"
+      ></textarea>
+    </mat-form-field>
+    <button
+      class="accept"
+      mat-raised-button
+      color="primary"
+      (click)="updateReview()"
+      *ngIf="
+        updateReviewFlag &&
+        review.user_id === userId &&
+        review._id === reviewIdUpdate
+      "
+    >
+      Accept
+    </button>
+    <button
+      class="accept"
+      mat-raised-button
+      color="primary"
+      (click)="reloadPage()"
+      *ngIf="
+        updateReviewFlag &&
+        review.user_id === userId &&
+        review._id === reviewIdUpdate
+      "
+    >
+      Cancel
+    </button>
+    <hr />
+  </div>
+</mat-card>

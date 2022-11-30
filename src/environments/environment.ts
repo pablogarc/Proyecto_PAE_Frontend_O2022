@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: '',
-  GOOGLE_ID: ''
+  GOOGLE_ID: '',
 };
 
 /*

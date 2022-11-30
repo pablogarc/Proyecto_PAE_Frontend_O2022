@@ -1,0 +1,21 @@
+$whiteColor: white;
+$backgroundColorButton: black;
+$marginRightWatchlist: 10px;
+$marginRightUser: 10px;
+
+.home {
+  color: $whiteColor;
+  text-decoration: none;
+}
+
+.space-right {
+  margin-right: $marginRightWatchlist;
+}
+
+.space-right-user {
+  margin-right: $marginRightUser;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

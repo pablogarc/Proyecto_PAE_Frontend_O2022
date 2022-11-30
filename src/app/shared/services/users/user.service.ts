@@ -37,9 +37,14 @@ export class UserService {
     localStorage.setItem('id', userId);
   }
 
-  checkUserId() {
+  logout() {
+    localStorage.clear();
+  }
+
+  checkUser() {
     const id = localStorage.getItem('id');
-    if (!id) {
+    const token = localStorage.getItem('token');
+    if (!id || !token) {
       return false;
     }
     return true;
@@ -59,19 +64,49 @@ export class UserService {
   updateUser(data: string, flag: string): Observable<any> {
     const token = localStorage.getItem('token');
     const id = localStorage.getItem('id');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        authorization: 'Bearer ' + token,
-      }),
-    };
-
     const url = `${environment.apiUrl}/user/${id}`;
 
-    const description = data;
-    return this.http.put(url, {description}, {
-      headers: { authorization: 'Bearer ' + token },
-      responseType: 'text',
-    });
+    if (flag === 'description') {
+      const description = data;
+      return this.http.put(
+        url,
+        { description },
+        {
+          headers: { authorization: 'Bearer ' + token },
+          responseType: 'text',
+        }
+      );
+    } else if (flag === 'password') {
+      const password = data;
+      return this.http.put(
+        url,
+        { password },
+        {
+          headers: { authorization: 'Bearer ' + token },
+          responseType: 'text',
+        }
+      );
+    } else if (flag === 'email') {
+      const email = data;
+      return this.http.put(
+        url,
+        { email },
+        {
+          headers: { authorization: 'Bearer ' + token },
+          responseType: 'text',
+        }
+      );
+    } else {
+      const full_name = data;
+      return this.http.put(
+        url,
+        { full_name },
+        {
+          headers: { authorization: 'Bearer ' + token },
+          responseType: 'text',
+        }
+      );
+    }
   }
 
   getCurrentUser(): Observable<any> {
@@ -85,5 +120,16 @@ export class UserService {
 
     const url = `${environment.apiUrl}/user/${id}`;
     return this.http.get(url, httpOptions);
+  }
+
+  deleteUser(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const id = localStorage.getItem('id');
+
+    const url = `${environment.apiUrl}/user/${id}`;
+    return this.http.delete(url, {
+      headers: { authorization: 'Bearer ' + token },
+      responseType: 'text',
+    });
   }
 }

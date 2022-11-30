@@ -1,1 +1,37 @@
-<p>watch-list works!</p>
+<h1>Your watchlist:</h1>
+
+<div *ngIf="watchlistFlag">
+  <div fxFlex fxLayout="column" fxLayoutGap="10px" style="height: 100vh">
+    <div fxLayout="row wrap">
+      <div
+        *ngFor="let movie of watchlistData"
+        fxFlex="15"
+        fxFlex.md="25"
+        fxFlex.sm="40"
+        fxFlex.xs="15"
+        fxLayout="column"
+        style="padding: 5px"
+      >
+        <mat-card class="content">
+          <mat-card-header>
+            <mat-card-title>{{ movie.title }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image class="img" [src]="url + movie.poster_path" />
+          <mat-card-content>
+            <p>Rate: {{ movie.vote_average }}</p>
+            <p>Release Date: {{ movie.release_date }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="removeItem(movie.id)"
+            >
+              Remove
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

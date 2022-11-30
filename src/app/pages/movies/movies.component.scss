@@ -1,6 +1,7 @@
-.movies {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, min-max(150px, 1fr));
+.content {
+  max-width: 200px;
 
-  gap: 16px;
+  .img {
+    background-size: cover;
+  }
 }

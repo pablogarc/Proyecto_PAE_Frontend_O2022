@@ -2,6 +2,25 @@
   text-align: -webkit-center;
   margin-top: 15px;
 
+  .alert {
+    text-align: -webkit-center;
+    padding: 5px;
+    max-width: 400px;
+    border: 2px solid red;
+    border-radius: 5px;
+    margin: 20px;
+  
+    .error {
+      color: red;
+      font-size: large;
+  
+      .errorIcon {
+        text-align: left;
+        font-size: 25px;
+      }
+    }
+  }
+
   .card {
     max-width: 700px;
 
@@ -20,6 +39,11 @@
 
     .edit-mode {
         margin-top: 15px;
+
+        .newValue{
+          margin-bottom: 15px;
+          width: 45%;
+        }
 
         .file {
             margin-bottom: 15px;
@@ -41,6 +65,10 @@
       border-radius: 5px;
       background-color: #573391;
       color: white;
+    }
+
+    .delete {
+      margin-top: 20px;
     }
   }
 }

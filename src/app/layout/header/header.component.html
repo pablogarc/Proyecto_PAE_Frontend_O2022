@@ -1,4 +1,31 @@
 <mat-toolbar color="primary">
-    MovIteso
+  <a routerLink="/movies" class="home spacer">MovIteso</a>
+  <!-- <input
+  class="input-src"
+    type="text"
+    name="search"
+    placeholder="Search..."
+    (ngModelChange)="searchMovie($event)"
+    [(ngModel)]="search"
+  />
+  <div class="results">
+    <ul>
+      <li *ngFor="let movie of data">
+        <a class="name" (click)="selectMovie(movie)" routerLink="/movies/{{movie.title}}">
+          {{movie.title}}
+        </a>
+        <img [src]="url + movie.poster_path">
+      </li>
+    </ul>
+  </div> -->
+  <button mat-raised-button routerLink="/watchlist" class="space-right">
+    Watchlist
+  </button>
+  <button mat-raised-button [matMenuTriggerFor]="menu" class="space-right-user">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/profile">Profile</button>
+    <button mat-menu-item (click)="logoutUser()">Log out</button>
+  </mat-menu>
 </mat-toolbar>
-
